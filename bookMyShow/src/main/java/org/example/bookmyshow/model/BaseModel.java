@@ -22,5 +22,4 @@ public class BaseModel {
 
     @LastModifiedDate
     private Date lastModifiedDate;
-
 }
