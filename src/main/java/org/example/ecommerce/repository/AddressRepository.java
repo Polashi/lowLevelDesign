@@ -6,4 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Integer> {
+    default boolean belongsToUser(int addressId, int userId){
+        return findById(addressId).map(address -> address.getUser()
+                .equals(userId)).orElse(false);
+    }
+
+    boolean existsById(int id);
 }

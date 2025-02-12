@@ -9,7 +9,9 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Override
-    Optional<Product> findById(int id);
+    Optional<Product> findById(Integer id);
     @Override
     Product save(Product product);
+
+
 }
