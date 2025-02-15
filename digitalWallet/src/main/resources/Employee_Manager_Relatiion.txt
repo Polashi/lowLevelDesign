@@ -1,0 +1,47 @@
+EmployeeBonus-> empID, name,  month, year,  bonusAmt,  managerID
+
+How would you proceed with the questions:-
+
+Design tables (How many tables will need to store these value and proper mapping)
+Query to return the name of employee who earned maximum bonus in January 2025.
+Map<String, List<String>>manager to Employees  -> write ->
+
+i) void addRelationToMap(String employeeID, String managerID, Map<String, List<String> managerToEmployeeMap)
+
+ii) Set<String> getAllReports(String empID)
+
+1. Table required:
+
+Employee table: id | name | manager_id | employment_type (E, M) |
+Employee_Bonus: emp_id | bonus_date | amount
+
+2. Name of emplotee who earned the max bonus in jan 25
+
+select e.name, eb.amount
+from Employee E
+join Employee_Bonus eb on e.id = eb.emp_id
+where MONTH(eb.bonus_date) = 1 and YEAR(eb.bonus_date) = 2025
+order by eb.amount desc
+limit 1;
+
+3. Java implementation:
+// Adds an employee id to the manager list with manager ID
+void addRelationToMap(String employeeID, String managerID, Map<String, List<String> managerToEmployeeMap){
+    managerToEmployeeMap.computeIfAbsent(managerID, e->new ArrayList<>()).add(employeeID);
+}
+
+Set<String> getAllReports(String empID, Map<String, List<String>> managerToEmployeeList){
+    Set<String> reports = new HashSet<>();
+    getReports(empID, managerToEmployeeList, reports);
+    return reports;
+}
+
+void getReports(String managerId, Map<String, List<String>> managerToEmployeeList, Set<String> reports){
+    if(managerToEmployeeList.containsKey(empID)){
+         for(String id: managerToEmployeeList.get(empID)){
+             if(reports.add(id)){
+                 getReports(id, managerToEmployeeList, reports);
+             }
+         }
+    }
+}
