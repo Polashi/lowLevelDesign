@@ -16,7 +16,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment makePayment(long billId) throws InvalidBillException {
-        if(billRepository.existsById(billId)){
+        if(billRepository.findById(billId).isEmpty()){
             throw new InvalidBillException("Invalid Bill");
         }
         return paymentGatewayAdapter.makePayment(billId,
