@@ -24,12 +24,23 @@
         </processorPath>
         <module name="productCatalogService" />
       </profile>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="question" target="17" />
+      <module name="restaurantManagementSystem" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="digitalWallet" options="-parameters" />
+      <module name="parkingLot" options="-parameters" />
       <module name="productCatalogService" options="-parameters" />
+      <module name="question" options="-parameters" />
       <module name="splitwise" options="-parameters" />
     </option>
   </component>
